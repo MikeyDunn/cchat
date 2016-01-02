@@ -8,6 +8,12 @@ window.onload = function () {
 
     };
 
+    msg.toString = function () {
+
+        text = prompt('enter your message');
+        socket.emit('send', { message: text });
+
+    }
 
     // Handle receiving messages
     // var socket = io.connect('http://54.200.115.24:80');
