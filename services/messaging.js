@@ -16,7 +16,9 @@ class Messaging {
     this.historyMax = 5
 
     // Props
-    this.identifier = this.socket.handshake.address
+    this.identifier = this.socket.handshake
+      ? this.socket.handsahke.address
+      : null
   }
 
   sendMessage(message) {
@@ -25,7 +27,7 @@ class Messaging {
     this.io.sockets.emit('message', message) // change to broadcast?????
 
     // Store message in history for new connection
-    this._storeHistory(message)
+    this._pushHistory(message)
 
     // Log message
     this.log.default(`${this.identifier} -- ${message}`)
@@ -44,16 +46,20 @@ class Messaging {
   sendHistory() {
     // Send tail of message history to new connection
     // Use archived message styling
-    history.forEach(message => {
+    this._getHistory().forEach(message => {
       this.socket.emit('archMessage', message)
     })
   }
 
-  _storeHistory(message) {
+  _pushHistory(message) {
     history.push(message)
 
     // Keep last nth of messages for history
     if (history.length > this.historyMax) history.shift()
+  }
+
+  _getHistory() {
+    return history
   }
 
   _isValid(message) {

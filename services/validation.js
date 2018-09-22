@@ -2,7 +2,7 @@ class Validation {
   constructor() {
     // Storage
     this.historyArr = []
-    this.lastPostTime = new Date()
+    this.lastPostTime = null
 
     // Rules
     this.historyMax = 5
