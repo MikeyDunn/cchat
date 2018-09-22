@@ -24,6 +24,8 @@ Mike Dunn is a senior Front-end Developer with 5+ years of professional experien
 
 ### Getting Started
 
+##### NPM Setup
+
 [Node.js](https://nodejs.org) is a prerequisite.
 
 Commands to install and run application:
@@ -36,6 +38,20 @@ $ npm run dev
 
 // Open browser to `http://localhost:8080`
 ```
+
+##### Docker Setup
+
+[Docker](https://www.docker.com/) is a prerequisite.
+
+Commands to run application:
+
+```
+$ docker build -t cchat .
+$ docker run -p 8080:8080 cchat
+
+// Open browser to `http://localhost:8080`
+```
+
 
 ### Testing
 

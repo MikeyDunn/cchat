@@ -17,7 +17,7 @@ class Messaging {
 
     // Props
     this.identifier = this.socket.handshake
-      ? this.socket.handsahke.address
+      ? this.socket.handshake.address
       : null
   }
 
