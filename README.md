@@ -1,40 +1,16 @@
-# cchat
+# C.CHAT
 
 Socket.io enabled chatting system that functions entirely inside the dev tools console.
 
-## Motivation
+### Motivation
 
-This project was created as an excuse to dive into NodeJS and Websockets.
+This project was created as a learning exercise for NodeJS, Websockets and general application architecture and testing.
 
-## Installing
+### Author
 
-Commands to install the application
+Mike Dunn is a senior Front-end Developer with 5+ years of professional experience. Seeking to help deliver high quality applications through excellent coding practices and technical leadership. Specializing in semantics, optimization and system design.
 
-```
-npm install
-```
-
-## Running
-
-Default settings will host the page at `localhost:8080`.
-
-Commands to run application
-
-```
-npm run dev
-```
-
-## Testing
-
-Testing is being handled by Tape.
-
-Command to run application tests:
-
-```
-npm run test
-```
-
-## Structure
+### Application Structure
 
 `/public` - Static assets that will be served to the client
 
@@ -46,9 +22,34 @@ npm run test
 
 `/index.js` - Entry point for NodeJS
 
-## Instructions
+### Getting Started
 
-Ignoring the decoy 404 page, you can open the dev tools console to find the chatting system
+[Node.js](https://nodejs.org) is a prerequisite.
+
+Commands to install and run application:
+
+```
+$ git clone git@github.com:MikeyDunn/cchat.git
+$ cd cchat
+$ npm install
+$ npm run dev
+
+// Open browser to `http://localhost:8080`
+```
+
+### Testing
+
+Testing is being handled by Tape and files are organized by service in the `/tests` directory.
+
+Command to run application tests:
+
+```
+npm run test
+```
+
+### Chat Instructions
+
+Ignoring the decoy 404 page, you can open the dev tools console to find the chatting system.
 
 The following commands can be typed directly in the console:
 
@@ -56,12 +57,9 @@ The following commands can be typed directly in the console:
 
 `msg(String)` - messaging function that can be called directly
 
-## Built With
+### Built With
 
 * [Socket.io](https://socket.io/) - Event-Based Bi-Directional Communication Layer
 * [Express](http://expressjs.com/) - Minimalist Web Framework
 * [NodeJS](https://nodejs.org/) - JavaScript Run-Time Environment
-
-## Authors
-
-* **Mike Dunn** - _Initial work_ - [MikeyDunn](https://github.com/MikeyDunn)
+* [Tape](https://github.com/substack/tape) - Simple Testing Framework
