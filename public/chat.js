@@ -1,50 +1,48 @@
-window.onload = function () {
+// Wait till Socket.io is laoded to window
+window.onload = function() {
+  // service
+  const socket = io.connect('http://localhost:8080')
 
-    // Chat Commands
-    msg = function (text) {
+  // Styling
+  const chatStyle = 'color: #800080; font-size:15px; font-family: helvetica;'
+  const archStyle = 'color: #a694a6; font-size:15px; font-family: helvetica;'
+  const sysStyle = 'color: #ccc; font-size:12px; font-family: helvetica;'
 
-        // Send message to server
-        socket.emit('send', { message: text });
+  // Storage
+  const messageQueue = []
 
-    };
+  // Console painting system
+  function addMessage(message) {
+    messageQueue.push(message)
 
-    msg.toString = function () {
+    // Clear current console and
+    // output messages in queue
+    console.clear()
+    messageQueue.forEach(messageObj => {
+      const { message, style } = messageObj
+      console.log('%c' + message, style)
+    })
+  }
 
-        text = prompt('enter your message');
-        socket.emit('send', { message: text });
+  // Function for sending messages
+  // directly from the console
+  function consoleMessage(message) {
+    socket.emit('send', message)
+  }
 
-    }
+  // Function to call alert pop up
+  // with text input
+  function alertMessage() {
+    const message = prompt('enter your message')
+    socket.emit('send', message)
+  }
 
-    // Handle receiving messages
-    // var socket = io.connect('http://54.200.115.24:80');
-    var socket = io.connect('http://localhost:3700');
-    socket.on('message', function (data) {
+  // Bind functions to appropriate objects
+  window.msg = consoleMessage
+  msg.toString = alertMessage
 
-        if (data.message) {
-
-            addMessage({
-                'message': data.message,
-                'style': data.style
-            });
-
-        }
-
-    });
-
-    // Console painting system
-    var msgQueue = [];
-    addMessage = function (msg) {
-
-        msgQueue.push(msg);
-        console.clear();
-
-        // Output messages in queue
-        for (var i = 0; i < msgQueue.length; i++) {
-
-            console.log('%c' + msgQueue[i].message, msgQueue[i].style)
-
-        }
-
-    }
-
+  // Event handlers
+  socket.on('message', message => addMessage({ message, style: chatStyle }))
+  socket.on('sysMessage', message => addMessage({ message, style: sysStyle }))
+  socket.on('archMessage', message => addMessage({ message, style: archStyle }))
 }
