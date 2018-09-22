@@ -6,19 +6,19 @@ test('Validation -- Valid String', function(t) {
 
   // Test 1 does not pass as string
   const intInvalid = validate.validString(1)
-  t.equal(intInvalid.valid, false)
+  t.false(intInvalid.valid)
 
   // Test object does not pass as string
   const objInvalid = validate.validString({})
-  t.equal(objInvalid.valid, false)
+  t.false(objInvalid.valid)
 
   // Test that string has valid length
   const lengthInvalid = validate.validString('')
-  t.equal(lengthInvalid.valid, false)
+  t.false(lengthInvalid.valid)
 
   // Test random string passes
   const stringValid = validate.validString('test')
-  t.equal(stringValid.valid, true)
+  t.true(stringValid.valid)
   t.equal(stringValid.message, 'test')
 
   t.end()
@@ -30,12 +30,12 @@ test('Validation -- Throttle Detection', function(t) {
   // Test successive posts under throttle limit fails
   validate.lastPostTime = new Date()
   const throttleInvalid = validate.throttleDetection('test')
-  t.equal(throttleInvalid.valid, false)
+  t.false(throttleInvalid.valid)
 
   // Test that posting after throttle time passes
   validate.lastPostTime = new Date() - (validate.throttleTime + 1)
   const throttleValid = validate.throttleDetection('test')
-  t.equal(throttleValid.valid, true)
+  t.true(throttleValid.valid)
   t.equal(throttleValid.message, 'test')
 
   t.end()
@@ -50,12 +50,12 @@ test('Validation -- Character Limit', function(t) {
     overString += 'a'
   }
   const limitInvalid = validate.characterLimit(overString)
-  t.equal(limitInvalid.valid, false)
+  t.false(limitInvalid.valid)
 
   // Test the string trimmed passes
   const underString = overString.substring(0, validate.maximumLength - 1)
   const limitValid = validate.characterLimit(underString)
-  t.equal(limitValid.valid, true)
+  t.true(limitValid.valid)
   t.equal(limitValid.message, underString)
 
   t.end()
@@ -67,11 +67,11 @@ test('Validation -- Blacklist String', function(t) {
 
   // Test that a blacklist element triggers test
   const blacklistInvalid = validate.stringBlacklist(blacklistString)
-  t.equal(blacklistInvalid.valid, false)
+  t.false(blacklistInvalid.valid)
 
   // Test that a random message passes
   const blacklistValid = validate.stringBlacklist('test')
-  t.equal(blacklistValid.valid, true)
+  t.true(blacklistValid.valid)
   t.equal(blacklistValid.message, 'test')
 
   t.end()
@@ -83,12 +83,12 @@ test('Validation -- Duplicate String', function(t) {
   // Test seeded historyArr triggers duplicate message
   validate.historyArr.push('test')
   const duplicateInvalid = validate.duplicateMessage('test')
-  t.equal(duplicateInvalid.valid, false)
+  t.false(duplicateInvalid.valid)
 
   // Test no longer duplicate after popping historyArr
   validate.historyArr.pop()
   const duplicateValid = validate.duplicateMessage('test')
-  t.equal(duplicateValid.valid, true)
+  t.true(duplicateValid.valid)
   t.equal(duplicateValid.message, 'test')
 
   t.end()
