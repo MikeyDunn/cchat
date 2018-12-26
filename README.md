@@ -6,10 +6,6 @@ Socket.io enabled chatting system that functions entirely inside the dev tools c
 
 This project was created as a learning exercise for NodeJS, Websockets and general application architecture and testing.
 
-### Author
-
-Mike Dunn is a senior Front-end Developer with 5+ years of professional experience. Seeking to help deliver high quality applications through excellent coding practices and technical leadership. Specializing in semantics, optimization and system design.
-
 ### Application Structure
 
 `/public` - Static assets that will be served to the client
@@ -79,3 +75,7 @@ The following commands can be typed directly in the console:
 * [Express](http://expressjs.com/) - Minimalist Web Framework
 * [NodeJS](https://nodejs.org/) - JavaScript Run-Time Environment
 * [Tape](https://github.com/substack/tape) - Simple Testing Framework
+
+### Author
+
+Mike Dunn is a senior Front-end Developer with 5+ years of professional experience. Seeking to help deliver high quality applications through excellent coding practices and technical leadership. Specializing in semantics, optimization and system design.
